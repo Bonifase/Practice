@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body  %}
+        <div class="jumbotron">
+                <h3>My Shopping List</h3>
+                <hr>
+                <table class="table table-striped">
+                    <tr>
+                        
+                        <th>Id</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Date Created</th>
+                        <th>Modify</th>
+                        <th>Remove</th>
+            
+                        
+                    </tr>
+                    {% for item in Lists %}
+                    <tr>
+                        <td>{{item.Id}}</td>
+                        <td>{{item.Title}}</td>
+                        <td>{{item.Quantity}}</td>
+                        <td>{{item.Date}}</td>
+                        {% if session.logged_in %}
+                        <td><a href="edit_list/{{item.id}}" class="btn btn-default pullright">Edit Item</a></td>
+                        <td><a href="#" class="btn btn-danger pullright">Remove Item</a></td>
+                        {% else %}
+                        <td>Edit</td>
+                        <td>Delete</td>
+                        {% endif %}
+                    </tr>
+                  {% endfor %}
+                </table>
+        </div>
+      
+ {% endblock %}  

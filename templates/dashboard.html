@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body  %}
+<div class="jumbotron text-center">
+    <h3>My Dashboard: <small>  {{session.Username}}</small></h3> 
+    <a class="btn btn-success" href="/add_list">Add Item to my List</a>
+    <p><div class="text-left"><h5> List Items</h5></div></p>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+            
+            <th>Item Id</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Date Created</th>
+            <th>Modify</th>
+            <th>Remove</th>
+
+            
+        </tr>
+        {% for item in Lists %}
+        <tr>
+            <td>{{item.Id}}</td>
+            <td>{{item.Title}}</td>
+            <td>{{item.Quantity}}</td>
+            <td>{{item.Date}}</td>
+            <td><a href="edit_list/{{item.Id}}" class="btn btn-default pullright">Edit Item</a></td>
+            <td>
+                <form action="{{url_for('delete_list', Id=item.Id)}}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Remove Item" class="btn btn-danger">
+                </form>
+            </td>
+        </tr>
+      {% endfor %}
+    </table>
+</div>
+ {% endblock %} 

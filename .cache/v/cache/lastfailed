@@ -1,0 +1,18 @@
+{
+  "test_app.py::AppTestCase": true,
+  "test_app.py::AppTestCase::test_login": true,
+  "test_app.py::FlaskrTestCase": true,
+  "test_app.py::FlaskrTestCase::test_empty_db": true,
+  "test_app.py::FlaskrTestCase::test_register": true,
+  "test_app.py::FlaskrTestCase::test_valid_user_registration": true,
+  "test_app.py::TestApp::test_empty_db": true,
+  "test_app.py::TestApp::test_login": true,
+  "test_app.py::TestApp::test_register": true,
+  "test_app.py::TestApp::test_valid_user_registration": true,
+  "test_app.py::testApp::test_login": true,
+  "test_app.py::testApp::test_logout": true,
+  "test_app.py::test_empty_db": true,
+  "test_app.py::test_login": true,
+  "test_app.py::test_register": true,
+  "test_app.py::test_valid_user_registration": true
+}
