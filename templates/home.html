@@ -3,6 +3,8 @@
 {% block body  %}
 <div class="jumbotron text-center">
     <h3>Welcome to Shopping List Application</h3>
+    <p>This application is built on the Python Flask Framework and enhanced with Bootstrap. This app is for keeping the list of items that one intends to buy</p>
+    <p>The author of this application has not implemented any database yet. Feel free to contact him at <a href="https://web.facebook.com/Bonieeee">Otieno Bonifase</a> for any suggestion on how to improve this app. </p>
     {% if session.logged_in %}
     <h5> You are now logged in and Your Username is {{session.Username}}</h5>
     <a href="/dashboard" class="btn btn-primary btn-lg">Dashboard</a>
