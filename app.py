@@ -3,14 +3,21 @@ from wtforms import Form, StringField, PasswordField, validators, TextField, Boo
 import os
 from passlib.hash import sha256_crypt
 from flask_login import LoginManager
-from user import User
-from lists import List
 from functools import wraps
 
 
 
 app = Flask(__name__)
+app.config.from_object(__name__) # load config from this file , app.py
 
+# Load default config and override config from an environment variable
+app.config.update(dict(
+    DATABASE=os.path.join(app.root_path, 'app.db'),
+    SECRET_KEY='development key',
+    USERNAME='admin',
+    PASSWORD='default'
+))
+app.config.from_envvar('APP_SETTINGS', silent=True)
 user = []
 shopping_list = []
 store = {}
@@ -62,16 +69,18 @@ def register():
         username = form.username.data
         password = form.password.data
         #Insert the form data in the user list
-        user.append(name)
-        user.append(email)
-        user.append(username)
-        user.append(password)
-        session['logged_in'] = True
-        session['Username'] = username
-       
-
-        flash('Registration successful.', 'success')
-        return redirect(url_for('home'))
+        if email not in user and username not in user:
+            user.append(name)
+            user.append(email)
+            user.append(username)
+            user.append(password)
+            session['logged_in'] = True
+            session['Username'] = username
+            flash('Registration successful.', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('User already Registered.', 'danger')
+            return render_template('register.html', form=form)
     else:
         return render_template('register.html', form=form)
 
@@ -88,6 +97,7 @@ def login():
          if username in user and  password_cadidate in user:
             session['logged_in'] = True
             session['Username'] = username
+            flash('Login successful.', 'success')
             return redirect(url_for('dashboard'))
          else:
             error = 'Wrong Login Details'
@@ -141,11 +151,11 @@ class addForm(Form):
 def add_list():
     form = addForm(request.form)
     if request.method == 'POST' and form.validate():
-        id = form.Id.data
+        Id = form.Id.data
         title = form.Title.data
         qnty = form.Quantity.data
         date = form.Date.data
-        store['Id'] = id
+        store['Id'] = Id
         store['Title'] = title
         store['Quantity'] = qnty
         store['Date'] = date
@@ -170,11 +180,11 @@ def edit_list(Id):
         form.Quantity.data = store['Quantity']
         form.Date.data = store['Date']
         if request.method == 'POST' and form.validate():
-            id = request.form['Id']
+            Id = request.form['Id']
             title = request.form['Title']
             qnty = request.form['Quantity']
             date = request.form['Date']
-            store['Id'] = id
+            store['Id'] = Id
             store['Title'] = title
             store['Quantity'] = qnty
             store['Date'] = date

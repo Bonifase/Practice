@@ -4,9 +4,9 @@
 <div class="jumbotron text-center">
     <h3>Welcome to Shopping List Application</h3>
     {% if session.logged_in %}
-    <h5> Username: {{session.Username}}</h5>
-    <a class="btn btn-success btn-lg" href="/dashboard">Dashboard</a>
-    <p><a class="btn btn-danger btn-lg" href="/logout">Logout</a></p>
+    <h5> You are now logged in and Your Username is {{session.Username}}</h5>
+    <a href="/dashboard" class="btn btn-primary btn-lg">Dashboard</a>
+    <a href="/logout" class="btn btn-success btn-lg">Logout</a>
     {% else %}
     <p>Please register or login below to use this application</p>
     <a href="/register" class="btn btn-primary btn-lg">Register</a>

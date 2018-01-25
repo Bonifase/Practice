@@ -11,8 +11,15 @@
          <div class="container">
              {% include 'includes/_messages.html' %}
             {% block body %}{% endblock %}
+            
+            <div id="footer" class="container text-center">
+                {% block footer %}
+                &copy; Copyright 2018 by <a href="https://plus.google.com/u/0/110292840337102395926">Bonifase</a>.
+                {% endblock %}
+            </div>
+            
           </div>
-         
+          
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
           integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
      </body>
