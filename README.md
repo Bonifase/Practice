@@ -1,2 +1,2 @@
-My Shopping List Application
+MyApplication
     This is my application
